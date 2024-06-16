@@ -49,6 +49,8 @@ function newGame() {
     if (guestScoreEl.classList.contains("leader")) {
         guestScoreEl.classList.remove("leader");
     }
+
+    this.resetTimer();
 }
 
 function startTimer() {
