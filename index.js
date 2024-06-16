@@ -10,32 +10,44 @@ let seconds = 0;
 let timer = null;
 let time = 0;
 
-function homeAddScore(num) {
-    homeScore += num;
-    homeScoreEl.textContent = homeScore;
+/**
+ * TODO make the scores and timer able to be edited by click and typing
+ * TODO saving the current scores and time to local storage so they can be retrieved if you refresh
+ **/
 
-    if (homeScore > guestScore) {
-        if (guestScoreEl.classList.contains("leader")) {
-            guestScoreEl.classList.remove("leader");
-        }
-        if (!homeScoreEl.classList.contains("leader")) {
-            homeScoreEl.classList.add("leader");
-        }
+
+function homeAdjustScore(num, type) {
+    if (type === 'add') {
+        homeScore += num;
+        homeScoreEl.textContent = homeScore;
     }
+
+    if (type === 'subtract') {
+        homeScore -= num;
+        if (homeScore <= 0){
+            homeScore = 0;
+        }
+        homeScoreEl.textContent = homeScore;
+    }
+
+    this.updateLeader();
 }
 
-function guestAddScore(num) {
-    guestScore += num;
-    guestScoreEl.textContent = guestScore;
-
-    if (guestScore > homeScore) {
-        if (homeScoreEl.classList.contains("leader")) {
-            homeScoreEl.classList.remove("leader");
-        }
-        if (!guestScoreEl.classList.contains("leader")) {
-            guestScoreEl.classList.add("leader");
-        }
+function guestAdjustScore(num, type) {
+    if (type === 'add') {
+        guestScore += num;
+        guestScoreEl.textContent = guestScore;
     }
+
+    if (type === 'subtract') {
+        guestScore -= num;
+        if (guestScore <= 0){
+            guestScore = 0;
+        }
+        guestScoreEl.textContent = guestScore;
+    }
+
+    this.updateLeader();
 }
 
 function newGame() {
@@ -91,4 +103,31 @@ function matchTimer() {
 function updateTimerDisplay() {
     time = ((hours < 10) ? ('0' + hours) : hours) + ":" + ((minutes < 10) ? ('0' + minutes) : minutes) + ":" + ((seconds < 10) ? ('0' + seconds) : seconds);
     timerEl.innerHTML = time.toLocaleString();
+}
+
+function updateLeader() {
+    if (homeScore > guestScore) {
+        if (guestScoreEl.classList.contains("leader")) {
+            guestScoreEl.classList.remove("leader");
+        }
+        if (!homeScoreEl.classList.contains("leader")) {
+            homeScoreEl.classList.add("leader");
+        }
+    }
+    else if (guestScore > homeScore) {
+        if (homeScoreEl.classList.contains("leader")) {
+            homeScoreEl.classList.remove("leader");
+        }
+        if (!guestScoreEl.classList.contains("leader")) {
+            guestScoreEl.classList.add("leader");
+        }
+    }
+    else {
+        if (homeScoreEl.classList.contains("leader")) {
+            homeScoreEl.classList.remove("leader");
+        }
+        if (guestScoreEl.classList.contains("leader")) {
+            guestScoreEl.classList.remove("leader");
+        }
+    }
 }
