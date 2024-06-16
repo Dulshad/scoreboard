@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <section class="timer-container">
+            <div class="title">
+                TIMER
+            </div>
+            <div id="timer">
+                00:00:00
+            </div>
+            <div>
+                <button onclick="startTimer()" class="btn-timer">START</button>
+                <button onclick="pauseTimer()" class="btn-timer">PAUSE</button>
+                <button onclick="resetTimer()" class="btn-timer">RESET</button>
+            </div>
+        </section>
+        <section class="scoreboard-container">
+            <div class="scoreboard">
+                <h3 class="title">HOME</h3>
+                <div id="home-score" class="score">0</div>
+                <div class="btn-increments">
+                    <button onclick="homeAddScore(1)" class="btn-increment">+1</button>
+                    <button onclick="homeAddScore(2)" class="btn-increment">+2</button>
+                    <button onclick="homeAddScore(3)" class="btn-increment">+3</button>
+                </div>
+            </div>
+            <div class="scoreboard">
+                <h3 class="title">GUEST</h3>
+                <div id="guest-score" class="score">0</div>
+                <div class="btn-increments">
+                    <button onclick="guestAddScore(1)" class="btn-increment">+1</button>
+                    <button onclick="guestAddScore(2)" class="btn-increment">+2</button>
+                    <button onclick="guestAddScore(3)" class="btn-increment">+3</button>
+                </div>
+            </div>
+        </section>
+        <div>
+            <button id="reset" onclick="newGame()">RESET</button>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
