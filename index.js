@@ -54,15 +54,19 @@ function newGame() {
 }
 
 function startTimer() {
-    timer = setInterval(matchTimer, 1000);
+    if (timer === null) {
+        timer = setInterval(matchTimer, 1000);
+    }
 }
 
 function pauseTimer() {
     clearInterval(timer);
+    timer = null;
 }
 
 function resetTimer() {
     clearInterval(timer);
+    timer = null;
     hours = 0;
     minutes = 0;
     seconds = 0;
@@ -84,7 +88,7 @@ function matchTimer() {
     updateTimerDisplay()
 }
 
-function updateTimerDisplay(){
+function updateTimerDisplay() {
     time = ((hours < 10) ? ('0' + hours) : hours) + ":" + ((minutes < 10) ? ('0' + minutes) : minutes) + ":" + ((seconds < 10) ? ('0' + seconds) : seconds);
     timerEl.innerHTML = time.toLocaleString();
 }
