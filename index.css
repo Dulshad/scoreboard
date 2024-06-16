@@ -63,6 +63,7 @@ body {
     color: #10B981;
     height: 45px;
     width: 90px;
+    border-radius: 4px;
 }
 
 .leader {
